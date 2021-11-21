@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { weatherSelector } from "redux/slices/weathers/weatherSlice";
-import _ from "lodash";
 import { Bar } from "react-chartjs-2";
 import { returnChartDataAndLabel } from "utils/chartData";
 

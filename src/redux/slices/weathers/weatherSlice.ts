@@ -2,17 +2,21 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { RootState } from "redux/reducers";
 import {
+  FormatedWeatherInterface,
+  SlicePayloadInterface,
+} from "typescript/weather.types";
+import {
   getPresentDayWeather,
-  getTodayWeatherForcast,
+  getDateWeatherForcast,
 } from "utils/getPresentDateWeather";
 import { getWeathers } from "./weatherActions";
 
 export type InitialState = {
-  weathers: any[];
+  weathers: FormatedWeatherInterface[];
   loading: boolean;
   error: string | null;
   weatherLength: number;
-  barChartData: any[];
+  barChartData: FormatedWeatherInterface[];
 };
 
 export const initialState: InitialState = {
@@ -29,9 +33,9 @@ export const weatherSlice = createSlice({
   reducers: {
     setWeatherToBarChartsData: (
       state: InitialState,
-      { payload: { weather, weathers } }: PayloadAction<any>
+      { payload: { weather, weathers } }: PayloadAction<SlicePayloadInterface>
     ) => {
-      state.barChartData = getTodayWeatherForcast(weathers, weather?.dt_txt);
+      state.barChartData = getDateWeatherForcast(weathers, weather?.dt_txt);
     },
   },
   extraReducers(builder) {
@@ -43,7 +47,7 @@ export const weatherSlice = createSlice({
         state.loading = false;
         state.weathers = action.payload;
         state.weatherLength = getPresentDayWeather(action.payload).length;
-        state.barChartData = getTodayWeatherForcast(
+        state.barChartData = getDateWeatherForcast(
           action.payload,
           action.payload[0]?.dt_txt
         );

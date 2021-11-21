@@ -1,5 +1,10 @@
-export const formatWeatherReturn = (weathers: any, units: string) => {
-  return weathers?.map((weather: any) => ({
+import { WeatherInterface } from "typescript/weather.types";
+
+export const formatWeatherReturn = (
+  weathers: WeatherInterface[],
+  units: string
+) => {
+  return weathers?.map((weather: WeatherInterface) => ({
     temperature: weather?.main?.temp,
     dt_txt: weather?.dt_txt,
     time: weather?.dt_txt.split(" ")[1],

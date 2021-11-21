@@ -1,17 +1,24 @@
 import _ from "lodash";
+import { FormatedWeatherInterface } from "typescript/weather.types";
 
 const getDate = (date: string) => new Date(date).getDay();
 
-export const getTodayWeatherForcast = (weathers: any, date: string) => {
+export const getDateWeatherForcast = (
+  weathers: FormatedWeatherInterface[],
+  date: string
+) => {
   const now = getDate(date);
-  return _.filter(weathers, (weather: any) => getDate(weather?.dt_txt) === now);
+  return _.filter(
+    weathers,
+    (weather: FormatedWeatherInterface) => getDate(weather?.dt_txt) === now
+  );
 };
 
-export const getPresentDayWeather = (weathers: any) => {
+export const getPresentDayWeather = (weathers: FormatedWeatherInterface[]) => {
   return _.uniqBy(
-    _.map(weathers, (weather: any) => ({
+    _.map(weathers, (weather: FormatedWeatherInterface) => ({
       ...weather,
-      date: formatNewDate(weather?.dt_txt),
+      date: getDay(weather?.dt_txt),
     })),
     "date"
   );
@@ -25,7 +32,7 @@ export const formatDate = (date: string): string => {
   return `${day} ${month} ${year}`;
 };
 
-export const formatNewDate = (date: string): string => {
+export const getDay = (date: string): string => {
   const dateString = new Date(date).toDateString();
   const day = dateString.split(" ")[2];
   return day;

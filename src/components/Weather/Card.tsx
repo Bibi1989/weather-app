@@ -1,10 +1,11 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
+import { FormatedWeatherInterface } from "typescript/weather.types";
 import { formatDate } from "../../utils/getPresentDateWeather";
 
 type Props = {
-  weather: any;
-  onClick: (payload: any) => void;
+  weather: FormatedWeatherInterface;
+  onClick: (payload: FormatedWeatherInterface) => void;
 };
 
 const Card: React.FC<Props> = ({ weather, onClick }) => {
@@ -42,6 +43,7 @@ const WeatherCard = styled.div`
   color: white;
   border-radius: 4px;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
 `;
 
 const TempName = styled.div`

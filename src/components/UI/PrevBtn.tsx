@@ -4,9 +4,10 @@ import styled from "styled-components";
 type Props = {
   onClick: () => void;
   disabled: boolean;
+  isMobile: boolean;
 };
 
-const PrevBtn: React.FC<Props> = ({ onClick, disabled }) => (
+const PrevBtn: React.FC<Props> = ({ onClick, disabled, isMobile }) => (
   <>{!disabled ? <PrevDiv onClick={onClick} /> : null}</>
 );
 
@@ -20,6 +21,14 @@ const PrevDiv = styled.div`
   left: -30px;
   top: 50%;
   cursor: pointer;
+
+  @media (max-width: 768px) {
+    left: 10px;
+    top: -50%;
+    z-index: 4;
+    width: 16px;
+    height: 16px;
+  }
 `;
 
 export default PrevBtn;

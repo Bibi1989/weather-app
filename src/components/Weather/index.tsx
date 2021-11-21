@@ -9,9 +9,11 @@ import LoaderComponent from "components/Loader/LoaderComponent";
 import NextBtn from "components/UI/NextBtn";
 import PrevBtn from "components/UI/PrevBtn";
 import Card from "./Card";
+import { useWindowSize } from "utils/useWindowSize";
+import { FormatedWeatherInterface } from "typescript/weather.types";
 
 type Props = {
-  weathers: any[];
+  weathers: FormatedWeatherInterface[];
   weatherLength: number;
   loading: boolean;
 };
@@ -23,40 +25,51 @@ const WeatherComponent: React.FC<Props> = ({
 }) => {
   const dispatch = useDispatch();
 
+  const [width] = useWindowSize();
+
+  const isMobile = width < 768;
+
   const [index, setIndex] = useState(0);
 
   const next = () => setIndex((prev: number) => (prev += 1));
   const prev = () => setIndex((prev: number) => (prev -= 1));
 
-  const disableNextBtn = index + NUMBER_TO_SHOW === weatherLength;
+  const count = isMobile ? 1 : NUMBER_TO_SHOW;
+
+  const disableNextBtn = index + count === weatherLength;
   const disablePrevBtn = !index;
 
-  const getTodayWeather = (payload: any) => {
+  const getTodayWeather = (payload: FormatedWeatherInterface) => {
     dispatch(setWeatherToBarChartsData({ weather: payload, weathers }));
   };
 
   return (
     <>
       {loading && <LoaderComponent />}
-      <WeatherGrid>
-        <PrevBtn onClick={prev} disabled={disablePrevBtn} />
+      <WeatherGrid isMobile={isMobile}>
+        <PrevBtn onClick={prev} disabled={disablePrevBtn} isMobile={isMobile} />
         {getPresentDayWeather(weathers)
-          ?.slice(index, index + NUMBER_TO_SHOW)
-          .map((weather: any) => (
-            <Card
-              weather={weather}
-              key={weather?.dt}
-              onClick={getTodayWeather}
-            />
+          ?.slice(index, index + count)
+          .map((weather: FormatedWeatherInterface) => (
+            <>
+              <Card
+                weather={weather}
+                key={weather?.dt}
+                onClick={getTodayWeather}
+              />
+            </>
           ))}
-        <NextBtn onClick={next} disabled={disableNextBtn} />
+        <NextBtn onClick={next} disabled={disableNextBtn} isMobile={isMobile} />
       </WeatherGrid>
     </>
   );
 };
 
-const WeatherGrid = styled.div`
-  display: flex;
+const WeatherGrid = styled.div<{ isMobile: boolean }>`
+  display: grid;
+  grid-template-columns: ${({ isMobile }) =>
+    isMobile ? "1fr" : "1fr 1fr 1fr"};
+  gap: 5px;
   position: relative;
   margin-top: 30px;
   margin-bottom: 40px;

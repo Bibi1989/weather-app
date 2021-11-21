@@ -14,8 +14,7 @@ import BarChart from "components/BarChart";
 const WeatherPage = () => {
   const dispatch = useDispatch();
 
-  const { weathers, weatherLength, loading, barChartData } =
-    useSelector(weatherSelector);
+  const { weathers, weatherLength, loading } = useSelector(weatherSelector);
 
   const [units, setUnits] = useState("metric");
 
@@ -24,7 +23,7 @@ const WeatherPage = () => {
     dispatch(setWeatherToBarChartsData({ weather: weathers[0], weathers }));
 
     // eslint-disable-next-line
-  }, [weatherLength]);
+  }, []);
 
   const refreshData = () => {
     dispatch(getWeathers(units));
@@ -37,10 +36,7 @@ const WeatherPage = () => {
     dispatch(getWeathers(value));
   };
 
-  const RenderBarChart = useCallback(
-    () => <BarChart />,
-    [loading, weathers, weatherLength, barChartData, dispatch]
-  );
+  const RenderBarChart = useCallback(() => <BarChart />, []);
 
   return (
     <Container>
@@ -62,8 +58,13 @@ const WeatherPage = () => {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 450px;
+  max-width: 480px;
   width: 100%;
+
+  @media (max-width: 768px) {
+    overflow-x: hidden;
+    padding: 0 10px;
+  }
 `;
 
 export default WeatherPage;

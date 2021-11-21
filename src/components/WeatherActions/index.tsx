@@ -13,8 +13,9 @@ type Props = {
 const WeatherActions: React.FC<Props> = ({ refreshData, onChange, units }) => {
   return (
     <Container>
+      <div></div>
       <RadioGroup onChange={onChange} units={units} />
-      <CustomBtn label="Refresh" onClick={refreshData} />
+      <CustomBtn label="Refresh" onClick={refreshData} className="btn" />
     </Container>
   );
 };
@@ -24,6 +25,16 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 10px 5px;
+  width: 100%;
+
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+
+    &.btn {
+      margin-top: 10px;
+    }
+  }
 `;
 
 export default WeatherActions;
