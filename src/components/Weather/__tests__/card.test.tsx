@@ -1,13 +1,10 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react";
-import { act } from "react-dom/test-utils";
 import { Provider } from "react-redux";
-import { getWeathers } from "redux/slices/weathers/weatherActions";
+
 import store from "redux/store";
 import { FormatedWeatherInterface } from "typescript/weather.types";
 import Card from "../Card";
-import { formatWeatherReturn } from "utils/formatWeatherReturn";
-import { mockWeatherData } from "utils/test-data/mockWeatherData";
 
 type Props = {
   weather: FormatedWeatherInterface;
@@ -43,8 +40,6 @@ it("Weather card should be in the document", async () => {
   const weatherCard = getByTestId("weatherCard");
 
   fireEvent.click(weatherCard);
-  // await act(async () => {
-  // });
 
   expect(onClick).toHaveBeenCalledTimes(1);
 });

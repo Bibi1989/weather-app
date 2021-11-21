@@ -1,11 +1,15 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { weatherSelector } from "redux/slices/weathers/weatherSlice";
 import { Bar } from "react-chartjs-2";
-import { returnChartDataAndLabel } from "utils/chartData";
 
-const BarChart = () => {
-  const { barChartData, weathers } = useSelector(weatherSelector);
+import { returnChartDataAndLabel } from "utils/chartData";
+import { FormatedWeatherInterface } from "typescript/weather.types";
+
+type Props = {
+  weathers: FormatedWeatherInterface[];
+  barChartData: FormatedWeatherInterface[];
+};
+
+const BarChart: React.FC<Props> = ({ weathers, barChartData }) => {
   const charts = returnChartDataAndLabel(barChartData);
 
   const data = {
@@ -47,7 +51,13 @@ const BarChart = () => {
     },
   };
 
-  return <Bar data={data} options={options} />;
+  return (
+    <Bar
+      data={data}
+      // options={options}
+      data-testid={barChartData.length > 0 ? "barchart" : null}
+    />
+  );
 };
 
 export default BarChart;

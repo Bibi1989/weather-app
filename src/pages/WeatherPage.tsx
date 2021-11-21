@@ -14,7 +14,8 @@ import BarChart from "components/BarChart";
 const WeatherPage = () => {
   const dispatch = useDispatch();
 
-  const { weathers, weatherLength, loading } = useSelector(weatherSelector);
+  const { weathers, weatherLength, loading, barChartData } =
+    useSelector(weatherSelector);
 
   const [units, setUnits] = useState("metric");
 
@@ -36,7 +37,10 @@ const WeatherPage = () => {
     dispatch(getWeathers(value));
   };
 
-  const RenderBarChart = useCallback(() => <BarChart />, []);
+  const RenderBarChart = useCallback(
+    () => <BarChart weathers={weathers} barChartData={barChartData} />,
+    [barChartData, weathers]
+  );
 
   return (
     <Container>

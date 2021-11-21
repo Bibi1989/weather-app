@@ -3,20 +3,20 @@ import styled from "styled-components";
 
 const EmptyComponent = () => {
   return (
-    <Container>
+    <Container data-testid="empty">
       <p>Sorry there is/are no weathers forcast</p>
     </Container>
   );
 };
 
 const Container = styled.div`
-    text-align: center;
-    width: 100%;
+  text-align: center;
+  width: 100%;
 
-    p{
-        text-align: center;
-        color: white;
-    }
+  p {
+    text-align: center;
+    color: white;
+  }
 `;
 
 export default EmptyComponent;

@@ -3,11 +3,16 @@
 exports[`Weather component Weather component snapshot 1`] = `
 <div>
   <div
-    class="sc-furwcr jEfldq"
+    class="sc-pVTFL gtIbrf"
   >
     <div
-      class="sc-dkPtRN dGJFbs"
-    />
+      class="sc-furwcr wjOzq"
+      data-testid="empty"
+    >
+      <p>
+        Sorry there is/are no weathers forcast
+      </p>
+    </div>
   </div>
 </div>
 `;

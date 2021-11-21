@@ -3,8 +3,8 @@ import {
   formatDate,
   getDateWeatherForcast,
   getDay,
-} from "../getPresentDateWeather";
-import { mockWeatherData } from "../test-data/mockWeatherData";
+} from "utils/getPresentDateWeather";
+import { mockWeatherData } from "utils/test-data/mockWeatherData";
 
 describe("Get Present Date Weathers", () => {
   test("returned date weather should be greater than 1", async () => {

@@ -1,72 +1,55 @@
-import { act } from "@testing-library/react";
-import { getWeathers } from "redux/slices/weathers/weatherActions";
-import store from "redux/store";
+import configureMockStore from "redux-mock-store";
+import thunk from "redux-thunk";
+
+import { formatWeatherReturn } from "utils/formatWeatherReturn";
+import { mockWeatherData } from "utils/test-data/mockWeatherData";
+
+const middlewares = [thunk];
+
+const mockStore = configureMockStore(middlewares);
 
 describe("weather slice", () => {
+  const weathersList = formatWeatherReturn(mockWeatherData.list, "metric");
+
+  const type = "GET_WEATHERS";
+
   test("weathers array state in redux should be empty when getWeathers action is not dispatch", async () => {
-    // let state = store.getState().weather;
-
-    // await act(async () => {
-    //   await store.dispatch<any>(getWeathers());
-    // });
-
-    // const weathers = state.weathers;
-    // expect(weathers.length).not.toBeGreaterThan(0);
+    const store: any = mockStore({
+      weathers: [],
+    });
+    let weathers = store.getState().weathers;
+    expect(weathers.length).not.toBeGreaterThan(0);
   });
-//   test("weathers array state in redux should be empty when getWeathers action is not dispatch", async () => {
-//     let state = store.getState().weather;
 
-//     await act(async () => {
-//       await store.dispatch<any>(getWeathers());
-//     });
+  test("weathers array state in redux should not be empty when action is dispatch", async () => {
+    const store: any = mockStore({
+      weathers: weathersList,
+    });
 
-//     const weathers = state.weathers;
-//     expect(weathers.length).not.toBeGreaterThan(0);
-//   });
-//   test("weathers array state in redux should not be empty when getWeathers action is not dispatch", async () => {
-//     await act(async () => {
-//       await store.dispatch<any>(getWeathers());
-//     });
+    let weathers = store.getState().weathers;
 
-//     let state = store.getState().weather;
+    store.dispatch({ type, payload: weathersList });
 
-//     const weathers = state.weathers;
-//     expect(weathers.length).toBeGreaterThan(0);
-//   });
-//   test("units value should be metric by default when no argument is pass to getWeathers action", async () => {
-//     await act(async () => {
-//       await store.dispatch<any>(getWeathers());
-//     });
+    expect(weathers.length).toBeGreaterThan(0);
+  });
 
-//     let state = store.getState().weather;
+  test("should contain type when dispatch", async () => {
+    const store: any = mockStore({
+      weathers: weathersList,
+    });
 
-//     const units = "metric";
+    store.dispatch({ type });
 
-//     const weathers = state.weathers;
-//     expect(weathers[0].units).toEqual(units);
-//   });
-//   test("units value should not be metric when (imperial) argument is pass to getWeathers action", async () => {
-//     await act(async () => {
-//       await store.dispatch<any>(getWeathers("imperial"));
-//     });
+    expect(store.getActions()).toContainEqual({ type });
+  });
 
-//     let state = store.getState().weather;
+  test("should contain type and a payload when dispatch", async () => {
+    const store: any = mockStore({
+      weathers: weathersList,
+    });
 
-//     const units = "metric";
+    store.dispatch({ type, payload: weathersList });
 
-//     const weathers = state.weathers;
-//     expect(weathers[0].units).not.toEqual(units);
-//   });
-//   test("units value should be imperial when (imperial) argument is pass to getWeathers action", async () => {
-//     await act(async () => {
-//       await store.dispatch<any>(getWeathers("imperial"));
-//     });
-
-//     let state = store.getState().weather;
-
-//     const units = "imperial";
-
-//     const weathers = state.weathers;
-//     expect(weathers[0].units).toEqual(units);
-//   });
+    expect(store.getActions()).toContainEqual({ type, payload: weathersList });
+  });
 });
