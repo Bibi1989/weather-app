@@ -11,6 +11,7 @@ import PrevBtn from "components/UI/PrevBtn";
 import Card from "./Card";
 import { useWindowSize } from "utils/useWindowSize";
 import { FormatedWeatherInterface } from "typescript/weather.types";
+import EmptyComponent from "components/UI/EmptyComponent";
 
 type Props = {
   weathers: FormatedWeatherInterface[];
@@ -36,7 +37,8 @@ const WeatherComponent: React.FC<Props> = ({
 
   const count = isMobile ? 1 : NUMBER_TO_SHOW;
 
-  const disableNextBtn = index + count === weatherLength;
+  const disableNextBtn =
+    weathers.length <= 0 || index + count === weatherLength;
   const disablePrevBtn = !index;
 
   const getTodayWeather = (payload: FormatedWeatherInterface) => {
@@ -46,20 +48,33 @@ const WeatherComponent: React.FC<Props> = ({
   return (
     <>
       {loading && <LoaderComponent />}
-      <WeatherGrid isMobile={isMobile}>
-        <PrevBtn onClick={prev} disabled={disablePrevBtn} isMobile={isMobile} />
-        {getPresentDayWeather(weathers)
-          ?.slice(index, index + count)
-          .map((weather: FormatedWeatherInterface) => (
-            <>
+      <WeatherGrid isMobile={isMobile || weathers.length <= 0}>
+        <PrevBtn
+          onClick={prev}
+          disabled={disablePrevBtn}
+          isMobile={isMobile}
+          data-testid="prev"
+        />
+        {weathers.length <= 0 ? (
+          <EmptyComponent />
+        ) : (
+          !loading &&
+          getPresentDayWeather(weathers)
+            ?.slice(index, index + count)
+            .map((weather: FormatedWeatherInterface) => (
               <Card
                 weather={weather}
                 key={weather?.dt}
                 onClick={getTodayWeather}
               />
-            </>
-          ))}
-        <NextBtn onClick={next} disabled={disableNextBtn} isMobile={isMobile} />
+            ))
+        )}
+        <NextBtn
+          onClick={next}
+          disabled={disableNextBtn}
+          isMobile={isMobile}
+          data-testid="next"
+        />
       </WeatherGrid>
     </>
   );
@@ -70,6 +85,7 @@ const WeatherGrid = styled.div<{ isMobile: boolean }>`
   grid-template-columns: ${({ isMobile }) =>
     isMobile ? "1fr" : "1fr 1fr 1fr"};
   gap: 5px;
+  justify-content: center;
   position: relative;
   margin-top: 30px;
   margin-bottom: 40px;

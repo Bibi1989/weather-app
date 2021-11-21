@@ -9,7 +9,7 @@ type Props = {
 
 const CustomBtn: React.FC<Props> = ({ label, onClick, className }) => {
   return (
-    <Button onClick={onClick} className={className}>
+    <Button onClick={onClick} className={className} data-testid="refreshBtn">
       {label}
     </Button>
   );

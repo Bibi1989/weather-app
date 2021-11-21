@@ -22,8 +22,9 @@ const Card: React.FC<Props> = ({ weather, onClick }) => {
     ),
     [weather]
   );
+  
   return (
-    <WeatherCard onClick={() => onClick(weather)}>
+    <WeatherCard onClick={() => onClick(weather)} data-testid="weatherCard">
       <TempName>Temperature</TempName>
       <WeatherForcast>
         <p>

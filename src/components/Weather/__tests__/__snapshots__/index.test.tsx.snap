@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Weather component Weather component snapshot 1`] = `
+<div>
+  <div
+    class="sc-furwcr jEfldq"
+  >
+    <div
+      class="sc-dkPtRN dGJFbs"
+    />
+  </div>
+</div>
+`;

@@ -5,15 +5,15 @@ import { Bar } from "react-chartjs-2";
 import { returnChartDataAndLabel } from "utils/chartData";
 
 const BarChart = () => {
-  const { barChartData } = useSelector(weatherSelector);
+  const { barChartData, weathers } = useSelector(weatherSelector);
   const charts = returnChartDataAndLabel(barChartData);
 
   const data = {
-    labels: charts.label,
+    labels: weathers.length > 0 ? charts.label : [],
     datasets: [
       {
         label: "# of Votes",
-        data: charts.data,
+        data: weathers.length > 0 ? charts.data : [],
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",

@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WeatherAction Refresh button snapshot 1`] = `
+<div>
+  <div
+    class="sc-hKwDye iNfIGD"
+  >
+    <div />
+    <div
+      class="sc-gsDKAQ jGbhrj"
+    >
+      <div
+        class="sc-dkPtRN ilLFFZ input_group"
+      >
+        <input
+          checked=""
+          id="c"
+          name="degree"
+          type="radio"
+          value="metric"
+        />
+        <label
+          for="c"
+        >
+          Celcius
+        </label>
+      </div>
+      <div
+        class="sc-dkPtRN ilLFFZ"
+      >
+        <input
+          id="f"
+          name="degree"
+          type="radio"
+          value="imperial"
+        />
+        <label
+          for="f"
+        >
+          Fahareient
+        </label>
+      </div>
+    </div>
+    <div
+      class="sc-bdvvtL fRQJjP btn"
+      data-testid="refreshBtn"
+    >
+      Refresh
+    </div>
+  </div>
+</div>
+`;

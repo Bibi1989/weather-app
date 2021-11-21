@@ -12,6 +12,8 @@ const store = configureStore({
   middleware,
 });
 
+export type StoreType = typeof store;
+
 export type AppDispatch = typeof store.dispatch;
 export const useAppDispatch = () => useDispatch();
 export type AppThunk = ThunkAction<void, RootState, unknown, Action>;
