@@ -2,9 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { RootState } from "redux/reducers";
 import { InitialState } from "typescript/redux.types";
-import {
-  SlicePayloadInterface,
-} from "typescript/weather.types";
+import { SlicePayloadInterface } from "typescript/weather.types";
 import {
   getPresentDayWeather,
   getDateWeatherForcast,
@@ -17,6 +15,7 @@ export const initialState: InitialState = {
   weatherLength: 0,
   error: null,
   barChartData: [],
+  city: null,
 };
 
 export const weatherSlice = createSlice({
@@ -36,12 +35,14 @@ export const weatherSlice = createSlice({
         state.loading = true;
       })
       .addCase(getWeathers.fulfilled, (state: InitialState, action) => {
+        const { weathers, city } = action.payload;
         state.loading = false;
-        state.weathers = action.payload;
-        state.weatherLength = getPresentDayWeather(action.payload).length;
+        state.weathers = weathers;
+        state.city = city;
+        state.weatherLength = getPresentDayWeather(weathers).length;
         state.barChartData = getDateWeatherForcast(
-          action.payload,
-          action.payload[0]?.dt_txt
+          weathers,
+          weathers[0]?.dt_txt
         );
       })
       .addCase(getWeathers.rejected, (state: InitialState) => {

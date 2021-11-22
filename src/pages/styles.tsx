@@ -11,3 +11,8 @@ export const Container = styled.div`
     padding: 0 10px;
   }
 `;
+
+export const CityTag = styled.div`
+  color: white;
+  text-align: center;
+`;

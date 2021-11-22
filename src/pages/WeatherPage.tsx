@@ -9,32 +9,43 @@ import {
 import WeatherActions from "components/WeatherActions";
 import WeatherComponent from "components/Weather";
 import BarChart from "components/BarChart";
-import { Container } from "./styles";
+import { Container, CityTag } from "./styles";
+import { useLocation } from "utils/useLocation";
 
 const WeatherPage = () => {
   const dispatch = useDispatch();
 
-  const { weathers, weatherLength, loading, barChartData } =
+  const { weathers, weatherLength, loading, barChartData, city } =
     useSelector(weatherSelector);
 
   const [units, setUnits] = useState("metric");
+  const [localLoading, setLocalLoading] = useState(true);
+
+  const result = useLocation();
 
   useEffect(() => {
-    dispatch(getWeathers());
-    dispatch(setWeatherToBarChartsData({ weather: weathers[0], weathers }));
+    if (result[0] && result[1]) {
+      dispatch(getWeathers({ coord: { long: result[0], lat: result[1] } }));
+      dispatch(setWeatherToBarChartsData({ weather: weathers[0], weathers }));
+      setLocalLoading(false);
+    }
 
     // eslint-disable-next-line
-  }, []);
+  }, [result[0], result[1], localLoading]);
 
   const refreshData = () => {
-    dispatch(getWeathers(units));
+    dispatch(
+      getWeathers({ units, coord: { long: result[0], lat: result[1] } })
+    );
   };
 
   const handleChange = ({
     target: { value },
   }: React.ChangeEvent<HTMLInputElement>) => {
     setUnits(value);
-    dispatch(getWeathers(value));
+    dispatch(
+      getWeathers({ units: value, coord: { long: result[0], lat: result[1] } })
+    );
   };
 
   const RenderBarChart = useCallback(
@@ -49,10 +60,11 @@ const WeatherPage = () => {
         onChange={handleChange}
         units={units}
       />
+      <CityTag>{city?.name}</CityTag>
       <WeatherComponent
         weathers={weathers}
         weatherLength={weatherLength}
-        loading={loading}
+        loading={loading || localLoading}
       />
       <RenderBarChart />
     </Container>
