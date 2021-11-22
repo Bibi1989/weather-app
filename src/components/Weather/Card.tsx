@@ -1,11 +1,12 @@
 import React, { useCallback } from "react";
 
 import { CardProps } from "typescript/react-props.types";
-import { formatDate } from "../../utils/getPresentDateWeather";
+import { formatDate } from "utils/getPresentDateWeather";
 import { TempDate, TempName, WeatherCard, WeatherForcast } from "./styles";
 
 const Card: React.FC<CardProps> = ({ weather, onClick }) => {
   const imageSrc = `http://openweathermap.org/img/wn/${weather.icon}.png`;
+  formatDate(weather.dt_txt);
   const WeatherIcon = useCallback(
     () => (
       <>
@@ -28,7 +29,7 @@ const Card: React.FC<CardProps> = ({ weather, onClick }) => {
         </p>
         <img src={imageSrc} alt="icon" />
       </WeatherForcast>
-      <TempDate>{formatDate(weather?.dt_txt)}</TempDate>
+      <TempDate>{formatDate(weather.dt_txt)}</TempDate>
     </WeatherCard>
   );
 };
