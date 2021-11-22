@@ -2,14 +2,9 @@ import React from "react";
 import { Bar } from "react-chartjs-2";
 
 import { returnChartDataAndLabel } from "utils/chartData";
-import { FormatedWeatherInterface } from "typescript/weather.types";
+import { BarChartProps } from "typescript/react-props.types";
 
-type Props = {
-  weathers: FormatedWeatherInterface[];
-  barChartData: FormatedWeatherInterface[];
-};
-
-const BarChart: React.FC<Props> = ({ weathers, barChartData }) => {
+const BarChart: React.FC<BarChartProps> = ({ weathers, barChartData }) => {
   const charts = returnChartDataAndLabel(barChartData);
 
   const data = {
@@ -54,7 +49,7 @@ const BarChart: React.FC<Props> = ({ weathers, barChartData }) => {
   return (
     <Bar
       data={data}
-      // options={options}
+      options={options}
       data-testid={barChartData.length > 0 ? "barchart" : null}
     />
   );

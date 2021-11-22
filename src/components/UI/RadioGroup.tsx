@@ -1,12 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-type Props = {
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  units: string;
-};
+import { RadioGroupProps } from "typescript/react-props.types";
 
-const RadioGroup: React.FC<Props> = ({ onChange, units }) => {
+const RadioGroup: React.FC<RadioGroupProps> = ({ onChange, units }) => {
   const isCelciusChecked = units === "metric";
   const isFahreheintChecked = units === "imperial";
 

@@ -1,14 +1,12 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
-import { FormatedWeatherInterface } from "typescript/weather.types";
+
+import { CardProps } from "typescript/react-props.types";
 import { formatDate } from "../../utils/getPresentDateWeather";
 
-type Props = {
-  weather: FormatedWeatherInterface;
-  onClick: (payload: FormatedWeatherInterface) => void;
-};
 
-const Card: React.FC<Props> = ({ weather, onClick }) => {
+
+const Card: React.FC<CardProps> = ({ weather, onClick }) => {
   const imageSrc = `http://openweathermap.org/img/wn/${weather.icon}.png`;
   const WeatherIcon = useCallback(
     () => (

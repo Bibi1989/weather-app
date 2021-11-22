@@ -1,13 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-type Props = {
-  onClick: () => void;
-  disabled: boolean;
-  isMobile: boolean;
-};
+import { PrevBtnProps } from "typescript/react-props.types";
 
-const PrevBtn: React.FC<Props> = ({ onClick, disabled, isMobile }) => (
+
+
+const PrevBtn: React.FC<PrevBtnProps> = ({ onClick, disabled, isMobile }) => (
   <>{!disabled ? <PrevDiv onClick={onClick} /> : null}</>
 );
 

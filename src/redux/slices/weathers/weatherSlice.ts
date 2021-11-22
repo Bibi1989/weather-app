@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { RootState } from "redux/reducers";
+import { InitialState } from "typescript/redux.types";
 import {
-  FormatedWeatherInterface,
   SlicePayloadInterface,
 } from "typescript/weather.types";
 import {
@@ -10,14 +10,6 @@ import {
   getDateWeatherForcast,
 } from "utils/getPresentDateWeather";
 import { getWeathers } from "./weatherActions";
-
-export type InitialState = {
-  weathers: FormatedWeatherInterface[];
-  loading: boolean;
-  error: string | null;
-  weatherLength: number;
-  barChartData: FormatedWeatherInterface[];
-};
 
 export const initialState: InitialState = {
   loading: false,

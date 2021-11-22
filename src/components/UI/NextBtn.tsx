@@ -1,13 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-type Props = {
-  onClick: () => void;
-  disabled: boolean;
-  isMobile: boolean;
-};
+import { NextBtnProps } from "typescript/react-props.types";
 
-const NextBtn: React.FC<Props> = ({ onClick, disabled, isMobile }) => (
+const NextBtn: React.FC<NextBtnProps> = ({ onClick, disabled, isMobile }) => (
   <>{!disabled ? <NextDiv onClick={onClick} /> : null}</>
 );
 

@@ -12,14 +12,9 @@ import Card from "./Card";
 import { useWindowSize } from "utils/useWindowSize";
 import { FormatedWeatherInterface } from "typescript/weather.types";
 import EmptyComponent from "components/UI/EmptyComponent";
+import { WeatherComponentProps } from "typescript/react-props.types";
 
-type Props = {
-  weathers: FormatedWeatherInterface[];
-  weatherLength: number;
-  loading: boolean;
-};
-
-const WeatherComponent: React.FC<Props> = ({
+const WeatherComponent: React.FC<WeatherComponentProps> = ({
   weathers,
   weatherLength,
   loading,

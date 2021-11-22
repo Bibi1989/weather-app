@@ -3,14 +3,13 @@ import styled from "styled-components";
 
 import CustomBtn from "components/UI/CustomBtn";
 import RadioGroup from "components/UI/RadioGroup";
+import { WeatherActionProps } from "typescript/react-props.types";
 
-type Props = {
-  refreshData: () => void;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  units: string;
-};
-
-const WeatherActions: React.FC<Props> = ({ refreshData, onChange, units }) => {
+const WeatherActions: React.FC<WeatherActionProps> = ({
+  refreshData,
+  onChange,
+  units,
+}) => {
   return (
     <Container>
       <div></div>
@@ -27,7 +26,6 @@ const Container = styled.div`
   padding: 10px 5px;
   width: 100%;
 
-  
   @media (max-width: 768px) {
     flex-direction: column;
 

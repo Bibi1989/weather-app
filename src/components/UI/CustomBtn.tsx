@@ -1,13 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-type Props = {
-  label: string;
-  onClick: () => void;
-  className?: string;
-};
+import { CustomBtnProps } from "typescript/react-props.types";
 
-const CustomBtn: React.FC<Props> = ({ label, onClick, className }) => {
+const CustomBtn: React.FC<CustomBtnProps> = ({ label, onClick, className }) => {
   return (
     <Button onClick={onClick} className={className} data-testid="refreshBtn">
       {label}
