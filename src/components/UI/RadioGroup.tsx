@@ -29,7 +29,7 @@ const RadioGroup: React.FC<RadioGroupProps> = ({ onChange, units }) => {
           value="imperial"
           checked={isFahreheintChecked}
         />
-        <label htmlFor="f">Fahareient</label>
+        <label htmlFor="f">Fahrenheit</label>
       </InputGroup>
     </Container>
   );

@@ -37,7 +37,7 @@ exports[`WeatherAction Refresh button snapshot 1`] = `
         <label
           for="f"
         >
-          Fahareient
+          Fahrenheit
         </label>
       </div>
     </div>
