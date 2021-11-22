@@ -5,8 +5,7 @@ import { formatDate } from "utils/getPresentDateWeather";
 import { TempDate, TempName, WeatherCard, WeatherForcast } from "./styles";
 
 const Card: React.FC<CardProps> = ({ weather, onClick }) => {
-  const imageSrc = `http://openweathermap.org/img/wn/${weather.icon}.png`;
-  formatDate(weather.dt_txt);
+  const imageSrc = `https://openweathermap.org/img/wn/${weather.icon}.png`;
   const WeatherIcon = useCallback(
     () => (
       <>

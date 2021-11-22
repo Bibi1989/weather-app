@@ -33,13 +33,15 @@ const renderWeatherCard = (props: Partial<Props> = {}) => {
   );
 };
 
-it("Weather card should be in the document", async () => {
-  const onClick = jest.fn();
-  const { getByTestId } = renderWeatherCard({ onClick });
+describe("Card", () => {
+  it("Weather card should be in the document", async () => {
+    const onClick = jest.fn();
+    const { getByTestId } = renderWeatherCard({ onClick });
 
-  const weatherCard = getByTestId("weatherCard");
+    const weatherCard = getByTestId("weatherCard");
 
-  fireEvent.click(weatherCard);
+    fireEvent.click(weatherCard);
 
-  expect(onClick).toHaveBeenCalledTimes(1);
+    expect(onClick).toHaveBeenCalledTimes(1);
+  });
 });

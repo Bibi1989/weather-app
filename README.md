@@ -12,6 +12,7 @@ An application that display weather forcast for five days and gives you a stat o
 - styled-components
 - Typescript
 - Lodash
+- Moment
 
 ## Requirements
 
@@ -192,3 +193,11 @@ After installing node, this project will need yarn too, so just run the followin
 
 - redux/weatherSlice
     Manages the global state of the application.
+
+## Why use styled components
+
+Styled Components help keep styling separated and make components more readable. Furthermore, when you have components that rely on JavaScript for their style, Styled Components gives control of those states back to CSS instead of using a multitude of conditional class names.
+
+## Why use lodash
+
+Lodash is a javascript utility tool that help in writing concise and maintainable code. Moment 

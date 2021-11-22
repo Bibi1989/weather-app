@@ -33,9 +33,3 @@ export const formatDate = (date: string): string => {
 export const getJustDate = (date: string): string => {
   return date.split(" ")[0];
 };
-
-export const getDay = (date: string): string => {
-  const dateString = new Date(date).toDateString();
-  const day = dateString.split(" ")[2];
-  return day;
-};
