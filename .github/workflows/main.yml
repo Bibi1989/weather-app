@@ -21,5 +21,8 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
         # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN_KEY }}
-        BRANCH: gh-pages
+        # BASE_BRANCH: development
+        BRANCH: master
+        # BRANCH: gh-pages
         FOLDER: build
+        # SINGLE_COMMIT: true
