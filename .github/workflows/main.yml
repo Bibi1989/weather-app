@@ -22,6 +22,5 @@ jobs:
       with:
         # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN_KEY }}
         BRANCH: master
-        # BRANCH: gh-pages
         FOLDER: build
         # SINGLE_COMMIT: true
