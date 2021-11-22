@@ -12,7 +12,7 @@ jobs:
     - name: Build
       run: |
         npm install
-        npm run-script build
+        npm build
       env:
         REACT_APP_WEATHER_API: ${{ secrets.REACT_APP_WEATHER_API }}
         REACT_APP_WEATHER_API_KEY: ${{ secrets.REACT_APP_WEATHER_API_KEY }}
