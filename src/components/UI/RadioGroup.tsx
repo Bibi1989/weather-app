@@ -1,7 +1,7 @@
 import React from "react";
-import styled from "styled-components";
 
 import { RadioGroupProps } from "typescript/react-props.types";
+import { Container, InputGroup } from "./styles";
 
 const RadioGroup: React.FC<RadioGroupProps> = ({ onChange, units }) => {
   const isCelciusChecked = units === "metric";
@@ -34,26 +34,5 @@ const RadioGroup: React.FC<RadioGroupProps> = ({ onChange, units }) => {
     </Container>
   );
 };
-
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-
-  label {
-    color: white;
-  }
-
-  @media (max-width: 768px) {
-    justify-content: space-between;
-  }
-`;
-
-const InputGroup = styled.div`
-  padding: 0 10px;
-  &.input_group {
-    margin-right: 15px;
-  }
-`;
 
 export default RadioGroup;

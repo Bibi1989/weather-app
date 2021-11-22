@@ -1,16 +1,11 @@
 import React from "react";
-import { render, fireEvent, screen } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 
 import WeatherActions from "..";
+import { WeatherActionProps } from "typescript/react-props.types";
 
-type Props = {
-  refreshData: () => void;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  units: string;
-};
-
-const renderWeatherActions = (props: Partial<Props> = {}) => {
-  const defaultProps: Props = {
+const renderWeatherActions = (props: Partial<WeatherActionProps> = {}) => {
+  const defaultProps: WeatherActionProps = {
     refreshData() {
       return;
     },

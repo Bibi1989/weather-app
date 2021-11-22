@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import styled from "styled-components";
 
 import { NUMBER_TO_SHOW } from "constants/static";
 import { setWeatherToBarChartsData } from "redux/slices/weathers/weatherSlice";
@@ -13,6 +12,7 @@ import { useWindowSize } from "utils/useWindowSize";
 import { FormatedWeatherInterface } from "typescript/weather.types";
 import EmptyComponent from "components/UI/EmptyComponent";
 import { WeatherComponentProps } from "typescript/react-props.types";
+import { WeatherGrid } from "./styles";
 
 const WeatherComponent: React.FC<WeatherComponentProps> = ({
   weathers,
@@ -74,16 +74,5 @@ const WeatherComponent: React.FC<WeatherComponentProps> = ({
     </>
   );
 };
-
-const WeatherGrid = styled.div<{ isMobile: boolean }>`
-  display: grid;
-  grid-template-columns: ${({ isMobile }) =>
-    isMobile ? "1fr" : "1fr 1fr 1fr"};
-  gap: 5px;
-  justify-content: center;
-  position: relative;
-  margin-top: 30px;
-  margin-bottom: 40px;
-`;
 
 export default WeatherComponent;

@@ -1,9 +1,9 @@
 import React from "react";
-import styled from "styled-components";
 
 import CustomBtn from "components/UI/CustomBtn";
 import RadioGroup from "components/UI/RadioGroup";
 import { WeatherActionProps } from "typescript/react-props.types";
+import { Container } from "./styles";
 
 const WeatherActions: React.FC<WeatherActionProps> = ({
   refreshData,
@@ -18,21 +18,5 @@ const WeatherActions: React.FC<WeatherActionProps> = ({
     </Container>
   );
 };
-
-const Container = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 5px;
-  width: 100%;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-
-    &.btn {
-      margin-top: 10px;
-    }
-  }
-`;
 
 export default WeatherActions;

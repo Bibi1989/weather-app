@@ -3,14 +3,14 @@
 exports[`WeatherAction Refresh button snapshot 1`] = `
 <div>
   <div
-    class="sc-hKwDye iNfIGD"
+    class="sc-jRQBWg bBjQle"
   >
     <div />
     <div
-      class="sc-gsDKAQ jGbhrj"
+      class="sc-bdvvtL cwkCTu"
     >
       <div
-        class="sc-dkPtRN ilLFFZ input_group"
+        class="sc-gsDKAQ kIvtJh input_group"
       >
         <input
           checked=""
@@ -26,7 +26,7 @@ exports[`WeatherAction Refresh button snapshot 1`] = `
         </label>
       </div>
       <div
-        class="sc-dkPtRN ilLFFZ"
+        class="sc-gsDKAQ kIvtJh"
       >
         <input
           id="f"
@@ -42,7 +42,7 @@ exports[`WeatherAction Refresh button snapshot 1`] = `
       </div>
     </div>
     <div
-      class="sc-bdvvtL fRQJjP btn"
+      class="sc-eCImPb uljmJ btn"
       data-testid="refreshBtn"
     >
       Refresh

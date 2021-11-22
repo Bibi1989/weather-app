@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
 
 import { getWeathers } from "redux/slices/weathers/weatherActions";
 import {
@@ -10,6 +9,7 @@ import {
 import WeatherActions from "components/WeatherActions";
 import WeatherComponent from "components/Weather";
 import BarChart from "components/BarChart";
+import { Container } from "./styles";
 
 const WeatherPage = () => {
   const dispatch = useDispatch();
@@ -58,17 +58,5 @@ const WeatherPage = () => {
     </Container>
   );
 };
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  max-width: 480px;
-  width: 100%;
-
-  @media (max-width: 768px) {
-    overflow-x: hidden;
-    padding: 0 10px;
-  }
-`;
 
 export default WeatherPage;

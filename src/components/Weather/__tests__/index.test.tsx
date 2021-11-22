@@ -7,17 +7,12 @@ import { FormatedWeatherInterface } from "typescript/weather.types";
 import { Provider } from "react-redux";
 import { formatWeatherReturn } from "utils/formatWeatherReturn";
 import { mockWeatherData } from "utils/test-data/mockWeatherData";
+import { WeatherComponentProps } from "typescript/react-props.types";
 
 const mockStore = createMockStore([]);
 
-type Props = {
-  weathers: FormatedWeatherInterface[];
-  weatherLength: number;
-  loading: boolean;
-};
-
-const renderWeatherComponent = (props: Partial<Props> = {}) => {
-  const defaultProps: Props = {
+const renderWeatherComponent = (props: Partial<WeatherComponentProps> = {}) => {
+  const defaultProps: WeatherComponentProps = {
     weathers: [],
     weatherLength: 5,
     loading: false,
@@ -55,7 +50,7 @@ describe("Weather component", () => {
     expect(weatherCard).not.toBeInTheDocument();
   });
 
-  it("Weather card should be in the document", async () => {
+  it("Weather component should be in the document", async () => {
     let weathers = formatWeatherReturn(mockWeatherData.list, "metric");
     let weatherLength = formatWeatherReturn(
       mockWeatherData.list,
@@ -71,6 +66,24 @@ describe("Weather component", () => {
     const weatherCard = queryByTestId("weatherCard");
 
     expect(weatherCard).toBeInTheDocument();
+  });
+
+  it("Weather component should not be in the document", async () => {
+    let weathers: FormatedWeatherInterface[] = [];
+    let weatherLength = formatWeatherReturn(
+      mockWeatherData.list,
+      "metric"
+    ).length;
+
+    const { queryByTestId } = renderWeatherComponent({
+      weathers,
+      weatherLength,
+      loading: false,
+    });
+
+    const weatherCard = queryByTestId("weatherCard");
+
+    expect(weatherCard).not.toBeInTheDocument();
   });
 
   it("should render an empty component when weathers list is empty", async () => {

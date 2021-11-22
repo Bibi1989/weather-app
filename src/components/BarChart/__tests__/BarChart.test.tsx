@@ -8,16 +8,12 @@ import { formatWeatherReturn } from "utils/formatWeatherReturn";
 import { getDateWeatherForcast } from "utils/getPresentDateWeather";
 import { mockWeatherData } from "utils/test-data/mockWeatherData";
 import BarChart from "..";
+import { BarChartProps } from "typescript/react-props.types";
 
 const mockStore = createMockStore([]);
 
-type Props = {
-  weathers: FormatedWeatherInterface[];
-  barChartData: FormatedWeatherInterface[];
-};
-
-const renderWeatherComponent = (props: Partial<Props> = {}) => {
-  const defaultProps: Props = {
+const renderBarChartComponent = (props: Partial<BarChartProps> = {}) => {
+  const defaultProps: BarChartProps = {
     weathers: [],
     barChartData: [],
   };
@@ -38,13 +34,13 @@ describe("Bar Chart component", () => {
     formatWeatherReturn(mockWeatherData.list, "")[0]?.dt_txt
   );
   it("Bar Chart component snapshot", () => {
-    const { container } = renderWeatherComponent();
+    const { container } = renderBarChartComponent();
 
     expect(container).toMatchSnapshot();
   });
 
-  it("Weather card should be in the document", async () => {
-    const { queryByTestId } = renderWeatherComponent({
+  it("Bar Chart should be in the document", async () => {
+    const { queryByTestId } = renderBarChartComponent({
       weathers,
       barChartData,
     });
