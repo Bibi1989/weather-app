@@ -7,6 +7,7 @@ export const Container = styled.div`
 
   label {
     color: white;
+    cursor: pointer;
   }
 
   @media (max-width: 768px) {

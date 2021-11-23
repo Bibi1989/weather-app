@@ -18,12 +18,12 @@ describe("Get Present Date Weathers", () => {
     const results = formatDate(dt_txt);
     expect(results).toEqual("20 Nov 2021");
   });
-  test("should not get the day of a date", async () => {
+  test("should not get the date", async () => {
     const dt_txt = "2021-11-20 03:00:00";
     const results = getJustDate(dt_txt);
     expect(results).not.toEqual("2021-11-21");
   });
-  test("should get the day of a date", async () => {
+  test("should get date", async () => {
     const dt_txt = "2021-11-20 03:00:00";
     const results = getJustDate(dt_txt);
     expect(results).toEqual("2021-11-20");
