@@ -3,7 +3,7 @@ import React from "react";
 import CustomBtn from "components/UI/CustomBtn";
 import RadioGroup from "components/UI/RadioGroup";
 import { WeatherActionProps } from "typescript/react-props.types";
-import { Container, Wrapper } from "./styles";
+import { Container, Wrapper, Label } from "./styles";
 import { CityTag } from "pages/styles";
 
 const WeatherActions: React.FC<WeatherActionProps> = ({
@@ -21,11 +21,14 @@ const WeatherActions: React.FC<WeatherActionProps> = ({
         <CustomBtn label="Refresh" onClick={refreshData} testId="refreshBtn" />
       </Container>
       <Container>
-        <CustomBtn
-          label="Select Current Location"
-          onClick={currentLocation}
-          testId="currentLocationBtn"
-        />
+        <div>
+          <CustomBtn
+            label="Select Current Location"
+            onClick={currentLocation}
+            testId="currentLocationBtn"
+          />
+          <Label>Note: Enable location in your browser</Label>
+        </div>
         <CityTag>Location: {city?.name}</CityTag>
       </Container>
     </Wrapper>

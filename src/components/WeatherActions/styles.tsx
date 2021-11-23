@@ -16,4 +16,11 @@ export const Container = styled.div`
   }
 `;
 
+export const Label = styled.p`
+  font-size: 12px;
+  color: #999999;
+  margin: 0;
+  margin-top: 3px;
+`;
+
 export const Wrapper = styled.div``;
