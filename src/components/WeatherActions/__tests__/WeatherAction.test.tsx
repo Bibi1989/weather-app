@@ -9,6 +9,9 @@ const renderWeatherActions = (props: Partial<WeatherActionProps> = {}) => {
     refreshData() {
       return;
     },
+    currentLocation() {
+      return;
+    },
     onChange() {
       return;
     },

@@ -1,7 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getWeathers } from "redux/slices/weathers/weatherActions";
+import {
+  getWeathers,
+  getWeathersFromYourLocation,
+} from "redux/slices/weathers/weatherActions";
 import {
   setWeatherToBarChartsData,
   weatherSelector,
@@ -9,8 +12,9 @@ import {
 import WeatherActions from "components/WeatherActions";
 import WeatherComponent from "components/Weather";
 import BarChart from "components/BarChart";
-import { Container, CityTag } from "./styles";
+import { Container } from "./styles";
 import { useLocation } from "utils/useLocation";
+import { dispatchActions } from "utils/dispatchAction";
 
 const WeatherPage = () => {
   const dispatch = useDispatch();
@@ -19,33 +23,41 @@ const WeatherPage = () => {
     useSelector(weatherSelector);
 
   const [units, setUnits] = useState("metric");
-  const [localLoading, setLocalLoading] = useState(true);
+  const [isCurrentLocation, setIsCurrentLocation] = useState(false);
 
   const result = useLocation();
 
+  const coord = { long: result[0], lat: result[1] };
+
   useEffect(() => {
-    if (result[0] && result[1]) {
-      dispatch(getWeathers({ coord: { long: result[0], lat: result[1] } }));
-      dispatch(setWeatherToBarChartsData({ weather: weathers[0], weathers }));
-      setLocalLoading(false);
-    }
+    dispatch(getWeathers());
+    dispatch(setWeatherToBarChartsData({ weather: weathers[0], weathers }));
+    setIsCurrentLocation(false);
 
     // eslint-disable-next-line
-  }, [result[0], result[1], localLoading]);
+  }, []);
 
   const refreshData = () => {
-    dispatch(
-      getWeathers({ units, coord: { long: result[0], lat: result[1] } })
-    );
+    dispatchActions(dispatch, units, coord, isCurrentLocation);
+  };
+
+  const selectCurrentLocationWeatherForcast = () => {
+    if (result[0] && result[1] && !isCurrentLocation) {
+      setIsCurrentLocation(true);
+      dispatch(
+        getWeathersFromYourLocation({
+          units,
+          coord,
+        })
+      );
+    }
   };
 
   const handleChange = ({
     target: { value },
   }: React.ChangeEvent<HTMLInputElement>) => {
     setUnits(value);
-    dispatch(
-      getWeathers({ units: value, coord: { long: result[0], lat: result[1] } })
-    );
+    dispatchActions(dispatch, value, coord, isCurrentLocation);
   };
 
   const RenderBarChart = useCallback(
@@ -59,12 +71,13 @@ const WeatherPage = () => {
         refreshData={refreshData}
         onChange={handleChange}
         units={units}
+        city={city}
+        currentLocation={selectCurrentLocationWeatherForcast}
       />
-      <CityTag>{city?.name}</CityTag>
       <WeatherComponent
         weathers={weathers}
         weatherLength={weatherLength}
-        loading={loading || localLoading}
+        loading={loading}
       />
       <RenderBarChart />
     </Container>

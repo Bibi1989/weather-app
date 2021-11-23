@@ -4,7 +4,7 @@ export const WeatherGrid = styled.div<{ isMobile: boolean }>`
   display: grid;
   grid-template-columns: ${({ isMobile }) =>
     isMobile ? "1fr" : "1fr 1fr 1fr"};
-  gap: 5px;
+  gap: 10px;
   justify-content: center;
   position: relative;
   margin-top: 30px;
@@ -13,7 +13,7 @@ export const WeatherGrid = styled.div<{ isMobile: boolean }>`
 
 export const WeatherCard = styled.div`
   padding: 10px 20px;
-  margin: 0 5px;
+  margin: 0 0px;
   background-color: violet;
   color: white;
   border-radius: 4px;

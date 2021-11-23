@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 5px;
+  padding: 10px 0px;
   width: 100%;
 
   @media (max-width: 768px) {
@@ -15,3 +15,5 @@ export const Container = styled.div`
     }
   }
 `;
+
+export const Wrapper = styled.div``;

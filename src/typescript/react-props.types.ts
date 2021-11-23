@@ -1,3 +1,4 @@
+import { City } from "./redux.types";
 import { FormatedWeatherInterface } from "./weather.types";
 
 export type BarChartProps = {
@@ -9,6 +10,7 @@ export type CustomBtnProps = {
   label: string;
   onClick: () => void;
   className?: string;
+  testId?: string;
 };
 
 export type NextBtnProps = {
@@ -40,7 +42,9 @@ export type CardProps = {
 };
 
 export type WeatherActionProps = {
-    refreshData: () => void;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    units: string;
-  };
+  refreshData: () => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  units: string;
+  city?: City | null;
+  currentLocation: () => void;
+};

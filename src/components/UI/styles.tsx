@@ -24,8 +24,8 @@ export const InputGroup = styled.div`
 export const PrevDiv = styled.div`
   border-top: 2px solid #ffffff;
   border-left: 2px solid #ffffff;
-  width: 20px;
-  height: 20px;
+  width: 12px;
+  height: 12px;
   transform: translateY(-50%) rotate(-45deg);
   position: absolute;
   left: -30px;
@@ -44,8 +44,8 @@ export const PrevDiv = styled.div`
 export const NextDiv = styled.div`
   border-top: 2px solid #ffffff;
   border-right: 2px solid #ffffff;
-  width: 20px;
-  height: 20px;
+  width: 12px;
+  height: 12px;
   transform: translateY(-50%) rotate(45deg);
   position: absolute;
   right: -30px;
@@ -66,6 +66,7 @@ export const Button = styled.div`
   border: none;
   border-radius: 4px;
   padding: 5px 15px;
+  font-size: 12px;
   cursor: pointer;
 
   @media (max-width: 768px) {

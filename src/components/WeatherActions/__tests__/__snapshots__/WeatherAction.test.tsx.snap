@@ -3,49 +3,68 @@
 exports[`WeatherAction Refresh button snapshot 1`] = `
 <div>
   <div
-    class="sc-jRQBWg bBjQle"
+    class="sc-gKclnd"
   >
-    <div />
     <div
-      class="sc-bdvvtL cwkCTu"
+      class="sc-jRQBWg fXywA-D"
     >
+      <div />
       <div
-        class="sc-gsDKAQ kIvtJh input_group"
+        class="sc-bdvvtL cwkCTu"
       >
-        <input
-          checked=""
-          id="c"
-          name="degree"
-          type="radio"
-          value="metric"
-        />
-        <label
-          for="c"
+        <div
+          class="sc-gsDKAQ kIvtJh input_group"
         >
-          Celcius
-        </label>
+          <input
+            checked=""
+            id="c"
+            name="degree"
+            type="radio"
+            value="metric"
+          />
+          <label
+            for="c"
+          >
+            Celcius
+          </label>
+        </div>
+        <div
+          class="sc-gsDKAQ kIvtJh"
+        >
+          <input
+            id="f"
+            name="degree"
+            type="radio"
+            value="imperial"
+          />
+          <label
+            for="f"
+          >
+            Fahrenheit
+          </label>
+        </div>
       </div>
       <div
-        class="sc-gsDKAQ kIvtJh"
+        class="sc-eCImPb lcIbJm"
+        data-testid="refreshBtn"
       >
-        <input
-          id="f"
-          name="degree"
-          type="radio"
-          value="imperial"
-        />
-        <label
-          for="f"
-        >
-          Fahrenheit
-        </label>
+        Refresh
       </div>
     </div>
     <div
-      class="sc-eCImPb uljmJ btn"
-      data-testid="refreshBtn"
+      class="sc-jRQBWg fXywA-D"
     >
-      Refresh
+      <div
+        class="sc-eCImPb lcIbJm"
+        data-testid="currentLocationBtn"
+      >
+        Select Current Location
+      </div>
+      <div
+        class="sc-furwcr hWNfou"
+      >
+        Location: 
+      </div>
     </div>
   </div>
 </div>

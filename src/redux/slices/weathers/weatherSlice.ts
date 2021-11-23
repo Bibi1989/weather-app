@@ -7,7 +7,7 @@ import {
   getPresentDayWeather,
   getDateWeatherForcast,
 } from "utils/getPresentDateWeather";
-import { getWeathers } from "./weatherActions";
+import { getWeathers, getWeathersFromYourLocation } from "./weatherActions";
 
 export const initialState: InitialState = {
   loading: false,
@@ -46,6 +46,27 @@ export const weatherSlice = createSlice({
         );
       })
       .addCase(getWeathers.rejected, (state: InitialState) => {
+        state.loading = false;
+        state.error = "something went wrong";
+      })
+      .addCase(getWeathersFromYourLocation.pending, (state: InitialState) => {
+        state.loading = true;
+      })
+      .addCase(
+        getWeathersFromYourLocation.fulfilled,
+        (state: InitialState, action) => {
+          const { weathers, city } = action.payload;
+          state.loading = false;
+          state.weathers = weathers;
+          state.city = city;
+          state.weatherLength = getPresentDayWeather(weathers).length;
+          state.barChartData = getDateWeatherForcast(
+            weathers,
+            weathers[0]?.dt_txt
+          );
+        }
+      )
+      .addCase(getWeathersFromYourLocation.rejected, (state: InitialState) => {
         state.loading = false;
         state.error = "something went wrong";
       });

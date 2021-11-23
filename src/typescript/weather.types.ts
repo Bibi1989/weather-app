@@ -58,3 +58,8 @@ export interface SlicePayloadInterface {
   weather: FormatedWeatherInterface;
   weathers: FormatedWeatherInterface[];
 }
+
+export interface CoordInterface {
+  long: number;
+  lat: number;
+}

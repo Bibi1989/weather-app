@@ -10,6 +10,20 @@ const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
 export const getWeathers = createAsyncThunk(
   "GET_WEATHERS",
+  async (payload?: WeatherActionPayload) => {
+    const newUnit = payload?.units ? payload.units : "metric";
+
+    const { list, city } = await getApi(
+      `${BASE_URL}/forecast?APPID=${API_KEY}&cnt=40&units=${newUnit}&lon=${DEFAULT_LONG}&lat=${DEFAULT_LAT}`
+    );
+    const formatReturn = formatWeatherReturn(list, newUnit);
+    const weathers = formatReturn;
+    return { weathers, city };
+  }
+);
+
+export const getWeathersFromYourLocation = createAsyncThunk(
+  "CURRENT_WEATHERS",
   async (payload: WeatherActionPayload) => {
     const newUnit = payload?.units ? payload.units : "metric";
 
